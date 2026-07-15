@@ -9,6 +9,7 @@ const ninos = [
   { id: 8, codigo: "S297", caption: "Uriel", fotos: ["8/uriel.JPG"] },
   { id: 9, codigo: "S288", caption: "Valeria", fotos: ["9/valeria.JPG"] },
   { id: 10, codigo: "S108", caption: "Zoe", fotos: ["10/zoe.JPG"] },
+  { id: 11, codigo: "S483", caption: "Luis", fotos: ["11/luis.JPG"] },
 ];
 
 const portadas = [
@@ -22,4 +23,5 @@ const portadas = [
   "uriel-paquete2.jpg",
   "valeria-paquete1.jpg",
   "zoe-paquete2.jpg",
+  "luis-paquete1.jpg",
 ];
