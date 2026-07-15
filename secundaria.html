@@ -931,7 +931,7 @@
                 nino.fotos.forEach((foto, idx) => {
                     const item = document.createElement('div');
                     item.className = 'gallery-item';
-                    const nombreLimpio = foto.split('/').pop().replace('.JPG', '').replace('.jpg', '');
+                    const nombreLimpio = `Foto #${idx + 1}`;
                     item.innerHTML = `
                         <div class="checkbox"></div>
                         <img src="${BASE_GALERIA}${rutaFoto(foto)}" alt="Foto ${idx + 1}" loading="lazy">
