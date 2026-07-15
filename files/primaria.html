@@ -683,6 +683,13 @@
         <div class="scroll-indicator">↓</div>
     </section>
 
+    <!-- AVISO GLOBO -->
+    <div class="aviso-globo" id="avisoGlobo">
+        <span class="cerrar" id="btnCerrarAviso">✕</span>
+        <h3>📸 ¡Más fotos muy pronto!</h3>
+        <p>Este <strong>fin de semana</strong> estaremos agregando más fotos a las galerías de graduación. ¡Vuelve a consultar!</p>
+    </div>
+
     <section class="polaroids-container" id="polaroidsContainer"></section>
 
     <section class="section-title">
@@ -694,13 +701,6 @@
         <p>Que estos recuerdos sean el comienzo de muchos más logros por venir. ¡Felicidades!</p>
     </section>
 
-
-    <!-- AVISO GLOBO -->
-    <div class="aviso-globo" id="avisoGlobo">
-        <span class="cerrar" id="btnCerrarAviso">✕</span>
-        <h3>📸 ¡Más fotos muy pronto!</h3>
-        <p>Este <strong>fin de semana</strong> estaremos agregando más fotos a las galerías de graduación. ¡Vuelve a consultar!</p>
-    </div>
 
     <!-- MODAL CÓDIGO -->
     <div class="modal-codigo-overlay" id="modalCodigo">
@@ -764,18 +764,24 @@
         // ============ GENERAR POLAROIDS ============
 
         // ============ AVISO GLOBO ============
-        if (localStorage.getItem('avisoGloboCerrado')) {
-            document.getElementById('avisoGlobo').classList.add('oculto');
+        const avisoGlobo = document.getElementById('avisoGlobo');
+        const btnCerrarAviso = document.getElementById('btnCerrarAviso');
+        if (avisoGlobo) {
+            if (localStorage.getItem('avisoGloboCerrado')) {
+                avisoGlobo.classList.add('oculto');
+            }
+            function cerrarAviso() {
+                avisoGlobo.classList.add('oculto');
+                localStorage.setItem('avisoGloboCerrado', 'true');
+            }
+            avisoGlobo.addEventListener('click', cerrarAviso);
+            if (btnCerrarAviso) {
+                btnCerrarAviso.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    cerrarAviso();
+                });
+            }
         }
-        function cerrarAviso() {
-            document.getElementById('avisoGlobo').classList.add('oculto');
-            localStorage.setItem('avisoGloboCerrado', 'true');
-        }
-        document.getElementById('avisoGlobo').addEventListener('click', cerrarAviso);
-        document.getElementById('btnCerrarAviso').addEventListener('click', function(e) {
-            e.stopPropagation();
-            cerrarAviso();
-        });
 
         const container = document.getElementById('polaroidsContainer');
         let ninoActual = null;
