@@ -940,7 +940,7 @@
                     // Click en checkbox = seleccionar
                     item.querySelector('.checkbox').addEventListener('click', (e) => {
                         e.stopPropagation();
-                        toggleSeleccion(item, foto, nombreLimpio);
+                        toggleSeleccion(item, foto, idx, nombreLimpio);
                     });
 
                     // Click en foto = lightbox
@@ -963,7 +963,7 @@
                 fotosSeleccionadas.splice(idx, 1);
                 item.classList.remove('selected');
             } else {
-                fotosSeleccionadas.push({ foto, nombre });
+                fotosSeleccionadas.push({ foto, idx, nombre });
                 item.classList.add('selected');
             }
             actualizarSeleccion();
@@ -1058,7 +1058,7 @@
 
             const nombresFotos = fotosSeleccionadas.map(f => f.nombre).join('\n');
             const texto = encodeURIComponent(
-                `Pedido de fotos para imprimir - ${ninoActual.caption}\n\nPaquete: ${paqueteSeleccionado.nombre} (${paqueteSeleccionado.precio})\n\nFotos seleccionadas:\n${nombresFotos}\n\nTotal: ${fotosSeleccionadas.length} foto(s)`
+                `Pedido de fotos - ${ninoActual.caption}\n\nPaquete: ${paqueteSeleccionado.nombre} (${paqueteSeleccionado.precio})\n\nFotos:\n${nombresFotos}\n\nTotal: ${fotosSeleccionadas.length} foto(s)\n\nGalería: https://cactusmultimedia.github.io/cactus-galeria/`
             );
 
             // Guardar pedido en localStorage

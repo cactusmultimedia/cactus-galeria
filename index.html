@@ -930,7 +930,7 @@
                 nino.fotos.forEach((foto, idx) => {
                     const item = document.createElement('div');
                     item.className = 'gallery-item';
-                    const nombreLimpio = foto.split('/').pop().replace('.JPG', '').replace('.jpg', '');
+                    const nombreLimpio = `Foto #${idx + 1}`;
                     item.innerHTML = `
                         <div class="checkbox"></div>
                         <img src="${BASE_GALERIA}${rutaFoto(foto)}" alt="Foto ${idx + 1}" loading="lazy">
@@ -940,7 +940,7 @@
                     // Click en checkbox = seleccionar
                     item.querySelector('.checkbox').addEventListener('click', (e) => {
                         e.stopPropagation();
-                        toggleSeleccion(item, foto, nombreLimpio);
+                        toggleSeleccion(item, foto, idx, nombreLimpio);
                     });
 
                     // Click en foto = lightbox
@@ -957,13 +957,13 @@
             modal.classList.add('active');
         }
 
-        function toggleSeleccion(item, foto, nombre) {
-            const idx = fotosSeleccionadas.findIndex(f => f.foto === foto);
-            if (idx > -1) {
-                fotosSeleccionadas.splice(idx, 1);
+        function toggleSeleccion(item, foto, idx, nombre) {
+            const exist = fotosSeleccionadas.findIndex(f => f.foto === foto);
+            if (exist > -1) {
+                fotosSeleccionadas.splice(exist, 1);
                 item.classList.remove('selected');
             } else {
-                fotosSeleccionadas.push({ foto, nombre });
+                fotosSeleccionadas.push({ foto, idx, nombre });
                 item.classList.add('selected');
             }
             actualizarSeleccion();
@@ -1058,7 +1058,7 @@
 
             const nombresFotos = fotosSeleccionadas.map(f => f.nombre).join('\n');
             const texto = encodeURIComponent(
-                `Pedido de fotos para imprimir - ${ninoActual.caption}\n\nPaquete: ${paqueteSeleccionado.nombre} (${paqueteSeleccionado.precio})\n\nFotos seleccionadas:\n${nombresFotos}\n\nTotal: ${fotosSeleccionadas.length} foto(s)`
+                `Pedido de fotos - ${ninoActual.caption}\n\nPaquete: ${paqueteSeleccionado.nombre} (${paqueteSeleccionado.precio})\n\nFotos:\n${nombresFotos}\n\nTotal: ${fotosSeleccionadas.length} foto(s)\n\nGalería: https://cactusmultimedia.github.io/cactus-galeria/`
             );
 
             // Guardar pedido en localStorage
