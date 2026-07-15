@@ -221,6 +221,34 @@
 
         .footer p { font-size: 1.4rem; opacity: 0.9; max-width: 600px; }
 
+        .aviso-globo {
+            background: linear-gradient(135deg, #1a1a3e, #2d2d6b);
+            border: 2px solid #f0c040;
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin: 20px auto;
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(240,192,64,0.15);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .aviso-globo .cerrar {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            color: #f0c040;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+        .aviso-globo .cerrar:hover { opacity: 1; }
+        .aviso-globo.oculto { opacity: 0; transform: translateY(-20px); pointer-events: none; }
+        .aviso-globo h3 { color: #f0c040; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; margin: 0 0 6px; }
+        .aviso-globo p { color: #ddd; font-size: 14px; line-height: 1.5; margin: 0; }
+        .aviso-globo p strong { color: #fff; }
+
+
         /* ============ MODAL CÓDIGO ============ */
         .modal-codigo-overlay {
             display: none;
@@ -666,6 +694,14 @@
         <p>Que estos recuerdos sean el comienzo de muchos más logros por venir. ¡Felicidades!</p>
     </section>
 
+
+    <!-- AVISO GLOBO -->
+    <div class="aviso-globo" id="avisoGlobo">
+        <span class="cerrar" id="btnCerrarAviso">✕</span>
+        <h3>📸 ¡Más fotos muy pronto!</h3>
+        <p>Este <strong>fin de semana</strong> estaremos agregando más fotos a las galerías de graduación. ¡Vuelve a consultar!</p>
+    </div>
+
     <!-- MODAL CÓDIGO -->
     <div class="modal-codigo-overlay" id="modalCodigo">
         <button class="modal-codigo-close" id="modalCodigoClose">✕</button>
@@ -726,6 +762,21 @@
         const rutaFoto = f => f.split('/').map(encodeURIComponent).join('/');
 
         // ============ GENERAR POLAROIDS ============
+
+        // ============ AVISO GLOBO ============
+        if (localStorage.getItem('avisoGloboCerrado')) {
+            document.getElementById('avisoGlobo').classList.add('oculto');
+        }
+        function cerrarAviso() {
+            document.getElementById('avisoGlobo').classList.add('oculto');
+            localStorage.setItem('avisoGloboCerrado', 'true');
+        }
+        document.getElementById('avisoGlobo').addEventListener('click', cerrarAviso);
+        document.getElementById('btnCerrarAviso').addEventListener('click', function(e) {
+            e.stopPropagation();
+            cerrarAviso();
+        });
+
         const container = document.getElementById('polaroidsContainer');
         let ninoActual = null;
 
