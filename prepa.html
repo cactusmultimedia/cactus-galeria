@@ -221,34 +221,6 @@
 
         .footer p { font-size: 1.4rem; opacity: 0.9; max-width: 600px; }
 
-        .aviso-globo {
-            background: linear-gradient(135deg, #1a1a3e, #2d2d6b);
-            border: 2px solid #f0c040;
-            border-radius: 20px;
-            padding: 18px 22px;
-            margin: 20px auto;
-            max-width: 700px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(240,192,64,0.15);
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-        .aviso-globo .cerrar {
-            position: absolute;
-            top: 8px;
-            right: 14px;
-            color: #f0c040;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0.7;
-        }
-        .aviso-globo .cerrar:hover { opacity: 1; }
-        .aviso-globo.oculto { opacity: 0; transform: translateY(-20px); pointer-events: none; }
-        .aviso-globo h3 { color: #f0c040; font-family: 'Playfair Display', Georgia, serif; font-size: 18px; margin: 0 0 6px; }
-        .aviso-globo p { color: #ddd; font-size: 14px; line-height: 1.5; margin: 0; }
-        .aviso-globo p strong { color: #fff; }
-
-
         /* ============ MODAL CÓDIGO ============ */
         .modal-codigo-overlay {
             display: none;
@@ -683,13 +655,6 @@
         <div class="scroll-indicator">↓</div>
     </section>
 
-    <!-- AVISO GLOBO -->
-    <div class="aviso-globo" id="avisoGlobo">
-        <span class="cerrar" id="btnCerrarAviso">✕</span>
-        <h3>📸 ¡Más fotos muy pronto!</h3>
-        <p>Este <strong>fin de semana</strong> estaremos agregando más fotos a las galerías de graduación. ¡Vuelve a consultar!</p>
-    </div>
-
     <section class="polaroids-container" id="polaroidsContainer"></section>
 
     <section class="section-title">
@@ -701,14 +666,13 @@
         <p>Que estos recuerdos sean el comienzo de muchos más logros por venir. ¡Felicidades!</p>
     </section>
 
-
     <!-- MODAL CÓDIGO -->
     <div class="modal-codigo-overlay" id="modalCodigo">
         <button class="modal-codigo-close" id="modalCodigoClose">✕</button>
         <div class="modal-codigo-box">
             <h2>📷 Ingresa tu código</h2>
             <p>Digita el código que recibiste para ver tus fotos</p>
-            <input type="text" id="codigoInput" placeholder="Ej: S732" maxlength="6" autocomplete="off">
+            <input type="text" id="codigoInput" placeholder="Ej: cpr01" maxlength="6" autocomplete="off">
             <button class="btn-enviar" id="btnCodigoEnviar">Ver galería</button>
             <p class="error" id="codigoError">Código no encontrado. Intenta de nuevo.</p>
         </div>
@@ -762,27 +726,6 @@
         const rutaFoto = f => f.split('/').map(encodeURIComponent).join('/');
 
         // ============ GENERAR POLAROIDS ============
-
-        // ============ AVISO GLOBO ============
-        const avisoGlobo = document.getElementById('avisoGlobo');
-        const btnCerrarAviso = document.getElementById('btnCerrarAviso');
-        if (avisoGlobo) {
-            if (localStorage.getItem('avisoGloboCerrado')) {
-                avisoGlobo.classList.add('oculto');
-            }
-            function cerrarAviso() {
-                avisoGlobo.classList.add('oculto');
-                localStorage.setItem('avisoGloboCerrado', 'true');
-            }
-            avisoGlobo.addEventListener('click', cerrarAviso);
-            if (btnCerrarAviso) {
-                btnCerrarAviso.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    cerrarAviso();
-                });
-            }
-        }
-
         const container = document.getElementById('polaroidsContainer');
         let ninoActual = null;
 
@@ -946,7 +889,7 @@
 
         function verificarCodigo() {
             const codigo = codigoInput.value.trim().toLowerCase();
-            if (codigo === ninoActual.codigo.toLowerCase()) {
+            if (codigo === ninoActual.codigo) {
                 modalCodigo.classList.remove('active');
                 abrirGaleria(ninoActual);
             } else {
@@ -987,7 +930,7 @@
                 nino.fotos.forEach((foto, idx) => {
                     const item = document.createElement('div');
                     item.className = 'gallery-item';
-                    const nombreLimpio = `Foto #${idx + 1}`;
+                    const nombreLimpio = foto.split('/').pop().replace('.JPG', '').replace('.jpg', '');
                     item.innerHTML = `
                         <div class="checkbox"></div>
                         <img src="${BASE_GALERIA}${rutaFoto(foto)}" alt="Foto ${idx + 1}" loading="lazy">
@@ -997,7 +940,7 @@
                     // Click en checkbox = seleccionar
                     item.querySelector('.checkbox').addEventListener('click', (e) => {
                         e.stopPropagation();
-                        toggleSeleccion(item, foto, idx, nombreLimpio);
+                        toggleSeleccion(item, foto, nombreLimpio);
                     });
 
                     // Click en foto = lightbox
@@ -1020,7 +963,7 @@
                 fotosSeleccionadas.splice(idx, 1);
                 item.classList.remove('selected');
             } else {
-                fotosSeleccionadas.push({ foto, idx, nombre });
+                fotosSeleccionadas.push({ foto, nombre });
                 item.classList.add('selected');
             }
             actualizarSeleccion();
@@ -1115,7 +1058,7 @@
 
             const nombresFotos = fotosSeleccionadas.map(f => f.nombre).join('\n');
             const texto = encodeURIComponent(
-                `Pedido de fotos - ${ninoActual.caption}\n\nPaquete: ${paqueteSeleccionado.nombre} (${paqueteSeleccionado.precio})\n\nFotos:\n${nombresFotos}\n\nTotal: ${fotosSeleccionadas.length} foto(s)\n\nGalería: https://cactusmultimedia.github.io/cactus-galeria/`
+                `Pedido de fotos para imprimir - ${ninoActual.caption}\n\nPaquete: ${paqueteSeleccionado.nombre} (${paqueteSeleccionado.precio})\n\nFotos seleccionadas:\n${nombresFotos}\n\nTotal: ${fotosSeleccionadas.length} foto(s)`
             );
 
             // Guardar pedido en localStorage
@@ -1130,7 +1073,7 @@
             });
 
             modalPaquetesOverlay.classList.remove('active');
-            window.open(`https://wa.me/5219612027531?text=${texto}`, '_blank');
+            window.open(`https://wa.me/5219611111111?text=${texto}`, '_blank');
         });
 
         modalPaquetesClose.addEventListener('click', () => modalPaquetesOverlay.classList.remove('active'));

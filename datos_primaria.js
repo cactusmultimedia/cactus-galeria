@@ -2,7 +2,7 @@ const ninos = [
   { id: 1, codigo: "S229", caption: "Alan", fotos: ["1/alan.JPG"] },
   { id: 2, codigo: "S370", caption: "Ariadna", fotos: ["2/ariatna.JPG"] },
   { id: 3, codigo: "S444", caption: "Bruno", fotos: ["3/bruno.JPG"] },
-  { id: 4, codigo: "S365", caption: "Carlos", fotos: ["4/carlos.JPG"] },
+  { id: 4, codigo: "carlos", caption: "Carlos", fotos: ["4/carlos.JPG"] },
   { id: 5, codigo: "S858", caption: "Celia", fotos: ["5/celia.JPG"] },
   { id: 6, codigo: "S545", caption: "Elizabeth", fotos: ["6/elizabeth.JPG"] },
   { id: 7, codigo: "S401", caption: "Emily", fotos: [] },
@@ -11,10 +11,10 @@ const ninos = [
   { id: 10, codigo: "S414", caption: "Leah", fotos: ["10/lea.JPG"] },
   { id: 11, codigo: "S413", caption: "Mia", fotos: ["11/mia.JPG"] },
   { id: 12, codigo: "S315", caption: "Montserrath", fotos: ["12/monserrat.JPG"] },
-  { id: 13, codigo: "S692", caption: "Nahomi", fotos: ["13/nahomi aguilar.JPG"] },
+  { id: 13, codigo: "nahomi", caption: "Nahomi", fotos: ["13/nahomi aguilar.JPG"] },
   { id: 14, codigo: "S984", caption: "Nahum", fotos: ["14/nahum.JPG"] },
   { id: 15, codigo: "S558", caption: "Naomi", fotos: ["15/naomi.JPG"] },
-  { id: 16, codigo: "S953", caption: "Ximena", fotos: ["16/ximena.JPG"] },
+  { id: 16, codigo: "ximena", caption: "Ximena", fotos: ["16/ximena.JPG"] },
   { id: 17, codigo: "S238", caption: "Yoarp", fotos: ["17/yoarp.JPG"] },
 ];
 
