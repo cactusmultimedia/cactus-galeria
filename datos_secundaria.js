@@ -23,7 +23,7 @@ const ninos = [
   { id: 22, codigo: "S744", caption: "Ximena Solail", fotos: ["22/familia.jpg", "22/grupo_aiDSC_2012.jpg", "22/grupo_aiDSC_2013.jpg", "22/grupo_aiDSC_2014.jpg", "22/grupo_aiDSC_2015.jpg", "22/grupo_aiDSC_2016.jpg", "22/grupo_aiDSC_2017.jpg", "22/grupo_aiDSC_2018.jpg", "22/grupo_aiDSC_2019.jpg", "22/grupo_aiDSC_2020.jpg", "22/grupo_aiDSC_2021.jpg", "22/grupo_aiDSC_2022.jpg", "22/grupo_aiDSC_2023.jpg", "22/grupo_aiDSC_2024.jpg", "22/grupo_aiDSC_2025.jpg", "22/grupo_aiDSC_2026.jpg", "22/grupo_aiDSC_2027.jpg", "22/grupo_aiDSC_2028.jpg", "22/grupo_arDSC_2029.jpg", "22/grupo_arDSC_2030.jpg", "22/grupo_arDSC_2031.jpg", "22/grupo_arDSC_2032.jpg", "22/grupo_arDSC_2033.jpg", "22/grupo_arDSC_2034.jpg", "22/grupo_arDSC_2035.jpg", "22/grupo_arDSC_2036.jpg", "22/ximena solai.JPG"] },
   { id: 23, codigo: "S151", caption: "Yatziri", fotos: ["23/familia.jpg", "23/grupo_2063.jpg", "23/grupo_2064.jpg", "23/grupo_2065.jpg", "23/grupo_2066.jpg", "23/grupo_2067.jpg", "23/grupo_2068.jpg", "23/grupo_lyDSC_2057.jpg", "23/grupo_lyDSC_2058.jpg", "23/grupo_lyDSC_2059.jpg", "23/grupo_lyDSC_2060.jpg", "23/grupo_lyDSC_2061.jpg", "23/grupo_lyDSC_2062.jpg", "23/yatziri.JPG"] },
   { id: 24, codigo: "S911", caption: "Uriel", fotos: ["24/familia.jpg", "24/uriel.jpg"] },
-  { id: 25, codigo: "S561", caption: "Abdel", fotos: ["25/abdel.jpg", "25/familia.jpg"] },
+  { id: 25, codigo: "S561", caption: "Abdel", fotos: ["25/abdel.jpg", "25/familia.jpg", "25/abdelDSC_4753.JPG", "25/abdelDSC_4754.JPG", "25/abdelDSC_4755.JPG"] },
 ];
 
 const portadas = [
