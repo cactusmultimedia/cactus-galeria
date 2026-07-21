@@ -889,7 +889,7 @@
 
         function verificarCodigo() {
             const codigo = codigoInput.value.trim().toLowerCase();
-            if (codigo === ninoActual.codigo) {
+            if (codigo === ninoActual.codigo.toLowerCase()) {
                 modalCodigo.classList.remove('active');
                 abrirGaleria(ninoActual);
             } else {
