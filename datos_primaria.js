@@ -19,10 +19,21 @@ const ninos = [
 ];
 
 const portadas = [
-  null,null,null,null,
+  "1/alan-paquete2.jpg",
+  "2/ariadna-paquete1.jpg",
+  "3/bruno-paquete1.jpg",
+  "4/carlos-paquete1.jpg",
   "5/celia-paquete1.jpg",
-  null,null,null,null,
-  null,null,null,null,
-  null,null,null,null,
-  null
+  "6/elizabeth-paquete1.jpg",
+  "7/emily-paquete1.jpg",
+  "8/hectorgael-paquete1.jpg",
+  "9/itzayana-paquete2.jpg",
+  "10/leah-paquete2.jpg",
+  "11/mia-paquete2.jpg",
+  "12/montserrath-paquete1.jpg",
+  "13/nahomi-paquete2.jpg",
+  "14/nahum-paquete1.jpg",
+  "15/naomi-paquete1.jpg",
+  "16/ximena-paquete1.jpg",
+  "17/yoarp-paquete1.jpg"
 ];
